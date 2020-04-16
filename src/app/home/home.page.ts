@@ -13,9 +13,12 @@ export class HomePage {
 
   title: string;
   imgData: string;
-  watch: any;
-  latitude: number;
-  longitude: number;
+
+  watchStart: boolean;
+  // watch: any;
+
+  position = [];
+
 
 
   constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation) {}
@@ -62,21 +65,24 @@ export class HomePage {
   }
 
   geo() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+      this.geolocation.getCurrentPosition().then((resp) => {
+        /* this.position.push({
+          latitude: resp.coords.latitude,
+          longitude: resp.coords.longitude,
+        }); */
 
-    this.watch = this.geolocation.watchPosition();
-    this.watch.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude;
-      // data.coords.longitude;
-      this.latitude = data.coords.latitude;
-      this.longitude = data.coords.longitude;
-    });
-  }
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });
 
+      let watch = this.geolocation.watchPosition();
+      watch.subscribe((data) => {
+        this.watchStart = true;
+        this.position.push({
+          latitude: data.coords.latitude,
+          longitude: data.coords.longitude
+        });
+
+      });
+    }
 }
