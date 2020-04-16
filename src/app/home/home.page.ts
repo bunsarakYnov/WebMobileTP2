@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class HomePage {
 
 
 
-  constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation) {}
+  constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation, private localNotification: LocalNotifications) {}
 
   updateTitle() {
     this.title = 'Mon Nouveau Titre';
@@ -75,7 +76,7 @@ export class HomePage {
         console.log('Error getting location', error);
       });
 
-      let watch = this.geolocation.watchPosition();
+      const watch = this.geolocation.watchPosition();
       watch.subscribe((data) => {
         this.watchStart = true;
         this.position.push({
@@ -85,4 +86,15 @@ export class HomePage {
 
       });
     }
+
+  notification() {
+    this.localNotification.schedule({
+      id: 1,
+      title: 'Ynov Informatique',
+      text: 'Notification Web Mobile Ynov !',
+      sound: null,
+    });
+  }
+
+
 }
