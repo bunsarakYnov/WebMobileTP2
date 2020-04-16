@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {AlertController} from '@ionic/angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,12 @@ export class HomePage {
 
   title: string;
   imgData: string;
+  watch: any;
+  latitude: number;
+  longitude: number;
 
-  constructor(private alertController: AlertController, private camera: Camera) {}
+
+  constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation) {}
 
   updateTitle() {
     this.title = 'Mon Nouveau Titre';
@@ -52,6 +58,24 @@ export class HomePage {
       this.imgData = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       // Handle error
+    });
+  }
+
+  geo() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+    this.watch = this.geolocation.watchPosition();
+    this.watch.subscribe((data) => {
+      // data can be a set of coordinates, or an error (if an error occurred).
+      // data.coords.latitude;
+      // data.coords.longitude;
+      this.latitude = data.coords.latitude;
+      this.longitude = data.coords.longitude;
     });
   }
 

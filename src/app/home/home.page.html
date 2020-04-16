@@ -49,5 +49,19 @@
     <ion-card *ngIf="imgData">
       <img [src]="imgData">
     </ion-card>
+
+    {{geo()}}
+
+    <ion-list>
+      <ion-item>
+        <ion-label class="ion-text-wrap">
+          <ion-label>Latitude: {{latitude}} Longitude: {{longitude}}</ion-label>
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+
+
   </div>
 </ion-content>
