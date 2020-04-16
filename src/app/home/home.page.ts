@@ -4,6 +4,10 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
+// tslint:disable-next-line:max-line-length
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
+
+
 
 @Component({
   selector: 'app-home',
@@ -16,13 +20,9 @@ export class HomePage {
   imgData: string;
 
   watchStart: boolean;
-  // watch: any;
-
   position = [];
 
-
-
-  constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation, private localNotification: LocalNotifications) {}
+  constructor(private alertController: AlertController, private camera: Camera, private geolocation: Geolocation, private localNotification: LocalNotifications, private cameraPreview: CameraPreview) {}
 
   updateTitle() {
     this.title = 'Mon Nouveau Titre';
@@ -95,6 +95,24 @@ export class HomePage {
       sound: null,
     });
   }
+
+  preview() {
+
+    const cameraPreviewOpts: CameraPreviewOptions = {
+      x: 0,
+      y: 0,
+      width: 640,
+      height: 480,
+      camera: 'rear',
+      tapPhoto: true,
+      previewDrag: true,
+      toBack: true,
+      alpha: 1
+    }
+
+    this.cameraPreview.startCamera(cameraPreviewOpts);
+  }
+
 
 
 }

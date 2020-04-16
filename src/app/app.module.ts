@@ -11,6 +11,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+// tslint:disable-next-line:max-line-length
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview/ngx';
+
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
         SplashScreen,
         Geolocation,
         LocalNotifications,
+        CameraPreview,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
 
     ],

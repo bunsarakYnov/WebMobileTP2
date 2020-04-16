@@ -44,6 +44,11 @@
         <ion-label>Prendre une photo</ion-label>
       </ion-item>
 
+      <ion-item (click)="preview()" class="ion-activated">
+        <ion-icon name="camera-reverse-outline" slot="start"></ion-icon>
+        <ion-label>Preview Camera</ion-label>
+      </ion-item>
+
       <ion-item (click)="notification()" class="ion-activated">
         <ion-icon name="thumbs-up-outline" slot="start"></ion-icon>
         <ion-label>Appuyer pour notification</ion-label>
