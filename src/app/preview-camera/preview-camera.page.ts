@@ -24,6 +24,10 @@ export class PreviewCameraPage implements OnInit {
     this.cameraPreview.startCamera({x: 80, y: 450, width: 250, height: 300, toBack: false, previewDrag: true, tapPhoto: true});
   }
 
+  stopCamera() {
+    this.cameraPreview.stopCamera();
+  }
+
 
 
 }

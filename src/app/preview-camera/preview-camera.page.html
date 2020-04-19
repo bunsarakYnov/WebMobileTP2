@@ -1,11 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>previewCamera</ion-title>
+    <ion-title>Page de la camera Preview</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  {{startCameraAbove()}}
+  <ion-item (click) = "startCameraAbove()" class="ion-activated">
+    <ion-icon name="camera-outline" slot="start"></ion-icon>
+    <ion-label>Démarrer la preview camera</ion-label>
+  </ion-item>
+
+  <ion-item (click) = "stopCamera() " class="ion-activated">
+    <ion-icon name="close-outline" slot="start"></ion-icon>
+    <ion-label>Arreter la preview camera</ion-label>
+  </ion-item>
+
 
 </ion-content>
